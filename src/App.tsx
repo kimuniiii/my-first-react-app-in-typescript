@@ -1,19 +1,29 @@
+// 外部モジュールからのインポート
 import React from 'react';
+
+// 内部モジュールからのインポート
+import Counter from './Counter';
 
 interface AppProps {
   message? : string;
 }
 
-//「Function Component」に対するアノテーションのベストプラクティス
+/**
+ * @概要 Function Componentに対するアノテーション
+ * @説明 「コンポーネント名 : React.FunctionComponent<interface> 」がベストプラクティス
+ * @param {AppProps} {message}
+ * @returns
+ */
+
 const App: React.FunctionComponent<AppProps> = ({message}: AppProps) => {
   return (
   <div>
-    <h1>{message}</h1>
-    <h2>React Starter Kit in TypeScript</h2>
+   <Counter />
   </div>
   );
 };
 
+// defaultPropsの指定
 App.defaultProps = {
   message : 'Hello, defaultProps',
   // description : 'This is App Component'
