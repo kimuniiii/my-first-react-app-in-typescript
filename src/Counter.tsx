@@ -1,5 +1,5 @@
 // 外部モジュールからのインポート
-import React, { useState } from 'react'
+import React, { useEffect, useRef , useState } from 'react'
 
 /**
  * @概要 Counterコンポーネント
@@ -10,9 +10,14 @@ import React, { useState } from 'react'
  * @params
  * @returns
  */
+
 const Counter: React.FC<{}> = () => {
   const initialCount : any = 0;
   const [count, setCount] = useState<number>(initialCount);
+
+  const reset = () => {
+    setCount(initialCount);
+  }
 
   const increment = () => {
     setCount((prevState) => prevState + 1);
@@ -22,11 +27,26 @@ const Counter: React.FC<{}> = () => {
     setCount((prevState) => prevState - 1);
   }
 
+  const renderTimes = useRef<number>(0);
+
+  useEffect(() => {
+    renderTimes.current = renderTimes.current + 1;
+  })
+
+  const ref = useRef<HTMLInputElement>(null!)
+
+  const focusInput = () => {
+     ref.current.focus();
+  }
   return (
     <div>
       <div>count: {count}</div>
+      <button onClick={reset}>Reset</button>
       <button onClick={increment}>+1</button>
       <button onClick={decrement}>-1</button>
+      <div>This component was re-rendered {renderTimes.current}</div>
+      <input ref={ref} type="text"/>
+      <button onClick={focusInput}>click Me!</button>
     </div>
   )
 }
