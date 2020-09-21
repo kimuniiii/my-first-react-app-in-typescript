@@ -3,6 +3,7 @@ import React from 'react';
 
 // 内部モジュールからのインポート
 import Counter from './Counter';
+import CounterWithReducer from './CounterWith';
 
 interface AppProps {
   message? : string;
@@ -18,7 +19,7 @@ interface AppProps {
 const App: React.FunctionComponent<AppProps> = ({message}: AppProps) => {
   return (
   <div>
-   <Counter />
+   <CounterWithReducer />
   </div>
   );
 };
